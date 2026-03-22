@@ -1,0 +1,182 @@
+---
+name: mac-video-compress
+description: Mac 上的视频压缩和倍速处理工具。支持 MOV/MP4 文件的压缩（调整码率、分辨率、质量）和快进/慢放（任意倍速），输出为 MP4 文件。当用户提到"视频压缩"、"视频转换"、"MOV 转 MP4"、"快进"、"倍速"、"加速视频"、"减小视频大小"、"录屏压缩"、"视频变速"等，或者用户有 .mov/.mp4 文件需要处理时，使用此 skill。即使用户只是简单地说"帮我处理一下这个视频"或"这个文件太大了"（指视频文件），也应该触发此 skill。
+---
+
+# 视频压缩与倍速处理
+
+这个 skill 帮助用户在 Mac 上对 MOV/MP4 视频文件进行压缩和倍速处理，输出为 MP4 格式。底层使用 ffmpeg 实现。
+
+## 前置检查
+
+在执行任何视频处理之前，先检查 ffmpeg 是否可用：
+
+```bash
+which ffmpeg
+```
+
+如果不存在，通过 Homebrew 安装：
+
+```bash
+brew install ffmpeg
+```
+
+## 发现视频文件
+
+用户可能会给出具体文件路径，也可能只说"当前目录的视频"。如果路径不明确，用 Glob 工具搜索：
+
+```
+pattern: **/*.{mov,mp4,MOV,MP4}
+```
+
+找到文件后，先用 ffprobe 获取视频信息，这对后续决策很重要：
+
+```bash
+ffprobe -v quiet -print_format json -show_format -show_streams "输入文件路径"
+```
+
+关键信息包括：
+- 是否有音频轨道（决定是否需要音频滤镜）
+- 原始分辨率和码率（决定压缩参数）
+- 视频时长（让用户了解处理后的预期时长）
+
+## 功能一：倍速处理
+
+用户说"快进"、"2倍速"、"加速"等时，使用 setpts 滤镜调整视频速度。
+
+核心原理：`setpts=PTS/倍速` 或等价地 `setpts=(1/倍速)*PTS`。比如 2 倍速就是 `setpts=0.5*PTS`，3 倍速就是 `setpts=0.333*PTS`。
+
+### 有音频轨道的情况
+
+音频需要用 `atempo` 滤镜同步调速。注意 `atempo` 的范围是 0.5~2.0，超出范围需要链式调用。
+
+**2 倍速（最常见）：**
+```bash
+ffmpeg -y -i "输入.mov" \
+  -filter_complex "[0:v]setpts=0.5*PTS[v];[0:a]atempo=2.0[a]" \
+  -map "[v]" -map "[a]" \
+  "输出_2x.mp4"
+```
+
+**4 倍速（atempo 需要链式）：**
+```bash
+ffmpeg -y -i "输入.mov" \
+  -filter_complex "[0:v]setpts=0.25*PTS[v];[0:a]atempo=2.0,atempo=2.0[a]" \
+  -map "[v]" -map "[a]" \
+  "输出_4x.mp4"
+```
+
+**慢放 0.5 倍：**
+```bash
+ffmpeg -y -i "输入.mov" \
+  -filter_complex "[0:v]setpts=2.0*PTS[v];[0:a]atempo=0.5[a]" \
+  -map "[v]" -map "[a]" \
+  "输出_0.5x.mp4"
+```
+
+### 无音频轨道的情况
+
+录屏文件经常没有音频。这种情况下不能使用音频滤镜，否则 ffmpeg 会报错。
+
+```bash
+ffmpeg -y -i "输入.mov" \
+  -vf "setpts=0.5*PTS" -an \
+  "输出_2x.mp4"
+```
+
+判断是否有音频的方法：看 ffprobe 输出中是否存在 `codec_type: "audio"` 的流。
+
+## 功能二：视频压缩
+
+用户说"压缩"、"减小文件大小"、"太大了"等时，通过调整编码参数来减小文件体积。
+
+### 压缩策略
+
+提供三个压缩等级供用户选择（如果用户没有明确偏好，默认使用"中等压缩"）：
+
+**轻度压缩**（画质优先，体积减少约 30-50%）：
+```bash
+ffmpeg -y -i "输入.mov" \
+  -c:v libx264 -crf 23 -preset medium \
+  -c:a aac -b:a 128k \
+  "输出_compressed.mp4"
+```
+
+**中等压缩**（平衡，体积减少约 50-70%）：
+```bash
+ffmpeg -y -i "输入.mov" \
+  -c:v libx264 -crf 28 -preset medium \
+  -c:a aac -b:a 96k \
+  "输出_compressed.mp4"
+```
+
+**重度压缩**（体积优先，体积减少约 70-90%）：
+```bash
+ffmpeg -y -i "输入.mov" \
+  -c:v libx264 -crf 35 -preset slow \
+  -c:a aac -b:a 64k \
+  "输出_compressed.mp4"
+```
+
+### 调整分辨率（可选）
+
+如果用户要求降低分辨率，或原始分辨率特别高（如 4K 录屏但只需要 1080p）：
+
+```bash
+# 缩放到 1080p 高度，宽度自动按比例，确保偶数
+-vf "scale=-2:1080"
+
+# 缩放到 720p
+-vf "scale=-2:720"
+
+# 缩放为原来的一半
+-vf "scale=iw/2:ih/2"
+```
+
+## 功能三：同时压缩 + 倍速
+
+两个需求可以组合。把 setpts 和 scale 放在同一个滤镜链中：
+
+```bash
+# 2倍速 + 中等压缩 + 缩放到 1080p（有音频）
+ffmpeg -y -i "输入.mov" \
+  -filter_complex "[0:v]setpts=0.5*PTS,scale=-2:1080[v];[0:a]atempo=2.0[a]" \
+  -map "[v]" -map "[a]" \
+  -c:v libx264 -crf 28 -preset medium \
+  -c:a aac -b:a 96k \
+  "输出_2x_compressed.mp4"
+
+# 2倍速 + 中等压缩（无音频）
+ffmpeg -y -i "输入.mov" \
+  -vf "setpts=0.5*PTS" -an \
+  -c:v libx264 -crf 28 -preset medium \
+  "输出_2x_compressed.mp4"
+```
+
+## 输出文件命名
+
+默认在原文件名基础上添加后缀，保存在同一目录：
+- 倍速：`原文件名_2x.mp4`
+- 压缩：`原文件名_compressed.mp4`
+- 倍速+压缩：`原文件名_2x_compressed.mp4`
+
+如果用户指定了输出路径，使用用户指定的。
+
+## 处理完成后
+
+告知用户：
+1. 输出文件路径
+2. 输出文件大小（与原文件对比）
+3. 处理后的视频时长（如果做了倍速处理）
+
+```bash
+# 查看文件大小
+ls -lh "输出文件路径"
+```
+
+## 注意事项
+
+- 始终使用 `-y` 参数避免覆盖确认的交互式提示阻塞
+- 对于大文件（>1GB），给 ffmpeg 命令设置较长的超时时间（timeout: 600000）
+- 如果 ffmpeg 处理失败，检查错误信息并给出明确的修复建议
+- Mac 上的 MOV 文件通常使用 H.264 或 HEVC 编码，libx264 输出兼容性最好

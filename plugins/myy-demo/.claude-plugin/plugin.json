@@ -1,7 +1,7 @@
 {
   "name": "myy-demo",
   "version": "1.0.0",
-  "description": "示例插件 - 问候、时间、笑话",
+  "description": "示例插件 - 问候、时间、笑话、视频处理",
   "author": {
     "name": "myy-claw"
   }

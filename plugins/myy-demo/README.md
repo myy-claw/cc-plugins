@@ -1,6 +1,6 @@
 # myy-demo
 
-示例插件 - 包含问候、时间和笑话等趣味 skills。
+示例插件 - 包含问候、时间、笑话和视频处理等 skills。
 
 ## 包含的 Skills
 
@@ -9,6 +9,7 @@
 | hello | `/myy-demo:hello` | 简单的 Hello World 问候 |
 | time | `/myy-demo:time` | 报告当前日期和时间 |
 | joke | `/myy-demo:joke` | 讲一个程序员笑话 |
+| mac-video-compress | `/myy-demo:mac-video-compress` | Mac 视频压缩和倍速处理（MOV/MP4） |
 
 ## 安装
 

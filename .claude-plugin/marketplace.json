@@ -12,9 +12,9 @@
     {
       "name": "myy-demo",
       "source": "./plugins/myy-demo",
-      "description": "示例插件 - 问候、时间、笑话",
+      "description": "示例插件 - 问候、时间、笑话、视频处理",
       "version": "1.0.0",
-      "keywords": ["example", "hello", "demo"]
+      "keywords": ["example", "hello", "demo", "video", "compress"]
     },
     {
       "name": "myyclaw-dev",
