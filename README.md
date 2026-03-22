@@ -72,33 +72,48 @@ myy-claw 的 Claude Code 插件市场。
 
 ### Step 5: 更新插件
 
-插件发布新版本后，执行 `/plugin` 切换到 **Installed** 标签页，可以看到有更新的插件：
+插件发布新版本后，执行 `/plugin` 切换到 **Installed** 标签页，选中要更新的插件按 **Enter** 进入详情页：
 
 ```
 +--------------------------------------------------------------------------+
-| Plugins  Installed  [Installed]   Marketplaces   Errors                  |
+| Plugins   Discover   [Installed]   Marketplaces   Errors                 |
 |--------------------------------------------------------------------------|
-| Installed plugins                                                        |
 |                                                                          |
-|   myyclaw-dev  · myy-cc-plugins                                         |
-|   Installed: 1.0.0  →  Available: 1.1.0  (update available)             |
+| myyclaw-dev @ myy-cc-plugins                                            |
+| Scope: user                                                              |
+| Version: 1.0.0                                                           |
+| myyclaw 开发团队工具集 - 飞书文档管理、开发规范等                        |
 |                                                                          |
-|   myy-demo     · myy-cc-plugins                                         |
-|   Installed: 1.0.0  (up to date)                                        |
+| Author: myy-claw                                                         |
+| Status: Enabled                                                          |
 |                                                                          |
-| u to update · U to update all · Enter to details · d to uninstall       |
+| Installed components:                                                    |
+| · Skills: feishu                                                         |
+|                                                                          |
+|   Disable plugin                                                         |
+|   Mark for update                                                        |
+| > Update now                        <-- 选择此项立即更新                  |
+|   Uninstall                                                              |
+|   Back to plugin list                                                    |
+|                                                                          |
+| ctrl+p to navigate · Enter to select · Esc to back                      |
 +--------------------------------------------------------------------------+
 ```
 
-选中需要更新的插件，按 **u** 更新单个插件，或按 **U** 一键更新全部：
+选择 **"Update now"** 后会提示更新成功：
 
 ```
-+--------------------------------------------------------------------------+
-|   ✓ myyclaw-dev updated: 1.0.0 → 1.1.0                                  |
-+--------------------------------------------------------------------------+
+✓ Updated myyclaw-dev. Run /reload-plugins to apply.
 ```
 
-> **提示**：也可以直接在对话中输入 `/plugin` 后选择更新，无需退出当前会话。更新后新的 Skill 内容会在下次调用时生效。
+最后执行 `/reload-plugins` 使更新生效：
+
+```
+> /reload-plugins
+  Reloaded: 10 plugins · 12 commands · 11 agents · 1 hook · 2 plugin MCP servers
+```
+
+> **提示**：更新后必须执行 `/reload-plugins`，新的 Skill 内容才会在当前会话中生效。
 
 ## 插件列表
 
