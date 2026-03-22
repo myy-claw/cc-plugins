@@ -2,10 +2,36 @@
 
 myy-claw 的 Claude Code 插件市场。
 
-## 安装
+## 使用指引
+
+### Step 1: 添加市场
+
+在 Claude Code 中执行：
 
 ```
 /plugin marketplace add myy-claw/cc-plugins
+```
+
+### Step 2: 发现插件
+
+执行 `/plugin`，切换到 **Discover** 标签页，搜索 `myy` 即可看到市场中的所有插件。
+
+### Step 3: 安装插件
+
+选择需要的插件，按 Enter 查看详情，选择安装范围：
+
+- **Install for you (user scope)** — 安装到你的用户级别，所有项目可用
+- **Install for all collaborators (project scope)** — 安装到项目级别，团队协作者共享
+- **Install for you, in this repo only (local scope)** — 仅当前仓库可用
+
+### Step 4: 使用 Skill
+
+安装后通过 `/<plugin-name>:<skill-name>` 调用，例如：
+
+```
+/myyclaw-dev:feishu
+/myy-demo-a:hello
+/myy-demo-b:summarize
 ```
 
 ## 插件列表
