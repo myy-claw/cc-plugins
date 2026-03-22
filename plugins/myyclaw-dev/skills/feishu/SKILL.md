@@ -43,6 +43,18 @@ python3 <skill_dir>/scripts/feishu.py <command> [args...]
 | `feishu_bitable_app_table_record` update | `update_record <app_token> <table_id> <record_id> <fields_json>` |
 | `feishu_bitable_app_table_record` delete | `delete_record <app_token> <table_id> <record_id>` |
 
+## 前置检查（每次调用前）
+
+在执行任何飞书操作之前，脚本会自动检查以下环境变量，缺少时会报错并给出配置提示：
+
+| 变量名 | 必填 | 说明 |
+|--------|------|------|
+| `FEISHU_APP_ID` | **是** | 飞书应用 App ID，缺少则无法发起 OAuth 登录 |
+| `FEISHU_APP_SECRET` | **是** | 飞书应用 App Secret，缺少则无法获取 token |
+| `FEISHU_SHARED_FOLDER` | **是** | 默认共享文件夹 folder_token，`create_doc` 和 `create_bitable` 未传 folder_token 时必须有此配置 |
+
+如果看到 `缺少必要的环境变量` 错误，引导用户在 `scripts/.env` 中配置（参见底部"配置方式"章节）。
+
 ## 首次使用初始化
 
 首次使用本 Skill 时，必须完成以下初始化流程：
@@ -194,12 +206,12 @@ FEISHU_APP_SECRET=xxx
 FEISHU_SHARED_FOLDER=xxx
 ```
 
-团队内部分发时只需发这个 `.env` 文件即可。`FEISHU_SHARED_FOLDER` 配置后，`create_doc` 和 `create_bitable` 默认创建到该文件夹。
+**三个变量均为必填**。团队内部分发时只需发这个 `.env` 文件即可。`create_doc` 和 `create_bitable` 会强制使用 `FEISHU_SHARED_FOLDER` 作为默认目标文件夹，未配置时将报错。
 
 ### 方式二：环境变量（优先级高于 .env）
 
-| 变量名 | 说明 |
-|--------|------|
-| `FEISHU_APP_ID` | 飞书应用 App ID |
-| `FEISHU_APP_SECRET` | 飞书应用 App Secret |
-| `FEISHU_SHARED_FOLDER` | 默认共享文件夹 folder_token |
+| 变量名 | 必填 | 说明 |
+|--------|------|------|
+| `FEISHU_APP_ID` | **是** | 飞书应用 App ID |
+| `FEISHU_APP_SECRET` | **是** | 飞书应用 App Secret |
+| `FEISHU_SHARED_FOLDER` | **是** | 默认共享文件夹 folder_token |

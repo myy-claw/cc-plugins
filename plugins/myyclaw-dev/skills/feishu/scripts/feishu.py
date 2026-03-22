@@ -76,6 +76,27 @@ if os.path.exists(ENV_FILE):
 APP_ID = os.environ.get("FEISHU_APP_ID", "")
 APP_SECRET = os.environ.get("FEISHU_APP_SECRET", "")
 SHARED_FOLDER = os.environ.get("FEISHU_SHARED_FOLDER", "")
+
+# 环境变量检查 — 缺少凭证时立即报错，避免运行到一半才失败
+_missing = []
+if not APP_ID:
+    _missing.append("FEISHU_APP_ID")
+if not APP_SECRET:
+    _missing.append("FEISHU_APP_SECRET")
+if _missing:
+    print(json.dumps({
+        "error": f"缺少必要的环境变量: {', '.join(_missing)}",
+        "hint": "请通过以下任一方式配置：\n"
+                f"方式一：在 {ENV_FILE} 中设置\n"
+                "  FEISHU_APP_ID=cli_xxxxxxxx\n"
+                "  FEISHU_APP_SECRET=xxxxxxxx\n"
+                "方式二：export 环境变量\n"
+                "  export FEISHU_APP_ID=cli_xxxxxxxx\n"
+                "  export FEISHU_APP_SECRET=xxxxxxxx\n"
+                "App ID 和 App Secret 可在 https://open.feishu.cn/app 后台的应用凭证页面找到。",
+    }, ensure_ascii=False, indent=2))
+    sys.exit(1)
+
 BASE_URL = "https://open.feishu.cn/open-apis"
 REDIRECT_URI = "http://localhost:9876/callback"
 TOKEN_FILE = os.path.join(SCRIPT_DIR, ".feishu_user_token.json")
@@ -281,8 +302,14 @@ def out(data):
 def cmd_create_doc(title, folder_token=None):
     body = {"title": title}
     folder = folder_token or SHARED_FOLDER
-    if folder:
-        body["folder_token"] = folder
+    if not folder:
+        print(json.dumps({
+            "error": "未指定目标文件夹，且 FEISHU_SHARED_FOLDER 环境变量为空",
+            "hint": f"请在 {ENV_FILE} 中设置 FEISHU_SHARED_FOLDER=<folder_token>，"
+                    "或在命令中传入 folder_token 参数。",
+        }, ensure_ascii=False, indent=2))
+        sys.exit(1)
+    body["folder_token"] = folder
     data = api("POST", "docx/v1/documents", json=body)
     doc = data.get("document", {})
     out({
@@ -318,8 +345,14 @@ def cmd_add_blocks(document_id, children_json, block_id=None):
 def cmd_create_bitable(name, folder_token=None):
     body = {"name": name}
     folder = folder_token or SHARED_FOLDER
-    if folder:
-        body["folder_token"] = folder
+    if not folder:
+        print(json.dumps({
+            "error": "未指定目标文件夹，且 FEISHU_SHARED_FOLDER 环境变量为空",
+            "hint": f"请在 {ENV_FILE} 中设置 FEISHU_SHARED_FOLDER=<folder_token>，"
+                    "或在命令中传入 folder_token 参数。",
+        }, ensure_ascii=False, indent=2))
+        sys.exit(1)
+    body["folder_token"] = folder
     data = api("POST", "bitable/v1/apps", json=body)
     app = data.get("app", {})
     out({
