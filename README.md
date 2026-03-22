@@ -6,32 +6,72 @@ myy-claw 的 Claude Code 插件市场。
 
 ### Step 1: 添加市场
 
-在 Claude Code 中执行：
+在 Claude Code 中执行以下命令，将本市场添加到你的插件源：
 
 ```
-/plugin marketplace add myy-claw/cc-plugins
+> /plugin marketplace add myy-claw/cc-plugins
+    Successfully added marketplace: myy-cc-plugins
 ```
 
 ### Step 2: 发现插件
 
-执行 `/plugin`，切换到 **Discover** 标签页，搜索 `myy` 即可看到市场中的所有插件。
+执行 `/plugin`，切换到 **Discover** 标签页，搜索关键词即可浏览市场中的插件：
+
+```
++--------------------------------------------------------------------------+
+| Plugins [Discover]  Installed   Marketplaces   Errors                    |
+|--------------------------------------------------------------------------|
+| Discover plugins                                                         |
+| +----------------------------------------------------------------------+ |
+| | > myy                                                                | |
+| +----------------------------------------------------------------------+ |
+|                                                                          |
+|   o  myy-demo-a  · myy-cc-plugins                                       |
+|      示例插件 A - 问候、时间、笑话                                       |
+|                                                                          |
+|   o  myy-demo-b  · myy-cc-plugins                                       |
+|      示例插件 B - 文本总结、翻译                                         |
+|                                                                          |
+| > *  myyclaw-dev  · myy-cc-plugins                                       |
+|      myyclaw 开发团队工具集 - 飞书文档管理、开发规范等                   |
+|                                                                          |
+| i to install · type to search · Space to toggle · Enter to details       |
++--------------------------------------------------------------------------+
+```
 
 ### Step 3: 安装插件
 
-选择需要的插件，按 Enter 查看详情，选择安装范围：
+选中插件按 Enter 进入详情，选择安装范围：
 
-- **Install for you (user scope)** — 安装到你的用户级别，所有项目可用
-- **Install for all collaborators (project scope)** — 安装到项目级别，团队协作者共享
-- **Install for you, in this repo only (local scope)** — 仅当前仓库可用
+```
++--------------------------------------------------------------------------+
+| Plugin details                                                           |
+|                                                                          |
+| myyclaw-dev                                                              |
+| from myy-cc-plugins                                                      |
+| Version: 1.0.0                                                           |
+|                                                                          |
+| myyclaw 开发团队工具集 - 飞书文档管理、开发规范等                        |
+|                                                                          |
+| > Install for you (user scope)            <-- 所有项目可用               |
+|   Install for all collaborators (project scope)  <-- 团队共享            |
+|   Install for you, in this repo only (local scope)  <-- 仅当前仓库      |
+|   Back to plugin list                                                    |
+|                                                                          |
+| Enter to select · Esc to back                                            |
++--------------------------------------------------------------------------+
+```
 
 ### Step 4: 使用 Skill
 
-安装后通过 `/<plugin-name>:<skill-name>` 调用，例如：
+安装完成后，通过 `/<plugin-name>:<skill-name>` 调用：
 
 ```
-/myyclaw-dev:feishu
-/myy-demo-a:hello
-/myy-demo-b:summarize
+> /myyclaw-dev:feishu              # 飞书文档管理
+> /myy-demo-a:hello                # Hello World 问候
+> /myy-demo-a:joke                 # 讲个程序员笑话
+> /myy-demo-b:summarize            # 文本总结
+> /myy-demo-b:translate            # 中英互译
 ```
 
 ## 插件列表
