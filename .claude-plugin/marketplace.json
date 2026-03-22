@@ -10,16 +10,16 @@
   },
   "plugins": [
     {
-      "name": "myy-hello",
-      "source": "./plugins/myy-hello",
-      "description": "示例插件 - Hello World skill",
+      "name": "myy-demo-a",
+      "source": "./plugins/myy-demo-a",
+      "description": "示例插件 A - 问候、时间、笑话",
       "version": "1.0.0",
       "keywords": ["example", "hello"]
     },
     {
-      "name": "myy-tools",
-      "source": "./plugins/myy-tools",
-      "description": "实用工具集插件 - 文本处理与辅助工具",
+      "name": "myy-demo-b",
+      "source": "./plugins/myy-demo-b",
+      "description": "示例插件 B - 文本总结、翻译",
       "version": "1.0.0",
       "keywords": ["tools", "summarize", "translate"]
     }

@@ -9,7 +9,7 @@ description: 中英文互译，支持代码注释和文档翻译
 
 ## 使用方式
 
-用户通过 `/myy-tools:translate` 调用此 skill。
+用户通过 `/myy-demo-b:translate` 调用此 skill。
 
 ## 行为
 

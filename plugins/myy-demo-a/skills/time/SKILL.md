@@ -9,7 +9,7 @@ description: 报告当前日期和时间，支持自定义格式
 
 ## 使用方式
 
-用户通过 `/myy-hello:time` 调用此 skill。
+用户通过 `/myy-demo-a:time` 调用此 skill。
 
 ## 行为
 

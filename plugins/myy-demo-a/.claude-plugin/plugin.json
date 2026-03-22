@@ -1,0 +1,8 @@
+{
+  "name": "myy-demo-a",
+  "version": "1.0.0",
+  "description": "示例插件 A - 问候、时间、笑话",
+  "author": {
+    "name": "myy-claw"
+  }
+}

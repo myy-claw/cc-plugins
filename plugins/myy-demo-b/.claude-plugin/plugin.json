@@ -1,0 +1,8 @@
+{
+  "name": "myy-demo-b",
+  "version": "1.0.0",
+  "description": "示例插件 B - 文本总结、翻译",
+  "author": {
+    "name": "myy-claw"
+  }
+}

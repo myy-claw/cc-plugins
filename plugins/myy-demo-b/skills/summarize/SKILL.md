@@ -9,7 +9,7 @@ description: 将文本或文件内容总结为简洁的要点
 
 ## 使用方式
 
-用户通过 `/myy-tools:summarize` 调用此 skill。
+用户通过 `/myy-demo-b:summarize` 调用此 skill。
 
 ## 行为
 
