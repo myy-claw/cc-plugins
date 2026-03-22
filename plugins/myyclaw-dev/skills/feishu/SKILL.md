@@ -1,5 +1,5 @@
 ---
-name: feishu-cc
+name: feishu
 description: 飞书云文档、多维表格和云空间操作。当用户提到"飞书"、"多维表格"、"bitable"、"数据表"、"飞书文档"、"知识库"、"wiki"，或需要创建/管理飞书文档和多维表格时使用此 Skill。
 ---
 
