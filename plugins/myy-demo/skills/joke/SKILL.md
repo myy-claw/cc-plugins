@@ -9,7 +9,7 @@ description: 讲一个程序员笑话，支持指定主题
 
 ## 使用方式
 
-用户通过 `/myy-demo-a:joke` 调用此 skill。
+用户通过 `/myy-demo:joke` 调用此 skill。
 
 ## 行为
 

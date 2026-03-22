@@ -26,11 +26,8 @@ myy-claw 的 Claude Code 插件市场。
 | | > myy                                                                | |
 | +----------------------------------------------------------------------+ |
 |                                                                          |
-|   o  myy-demo-a  · myy-cc-plugins                                       |
-|      示例插件 A - 问候、时间、笑话                                       |
-|                                                                          |
-|   o  myy-demo-b  · myy-cc-plugins                                       |
-|      示例插件 B - 文本总结、翻译                                         |
+|   o  myy-demo    · myy-cc-plugins                                       |
+|      示例插件 - 问候、时间、笑话                                         |
 |                                                                          |
 | > *  myyclaw-dev  · myy-cc-plugins                                       |
 |      myyclaw 开发团队工具集 - 飞书文档管理、开发规范等                   |
@@ -68,18 +65,16 @@ myy-claw 的 Claude Code 插件市场。
 
 ```
 > /myyclaw-dev:feishu              # 飞书文档管理
-> /myy-demo-a:hello                # Hello World 问候
-> /myy-demo-a:joke                 # 讲个程序员笑话
-> /myy-demo-b:summarize            # 文本总结
-> /myy-demo-b:translate            # 中英互译
+> /myy-demo:hello                  # Hello World 问候
+> /myy-demo:time                   # 当前时间
+> /myy-demo:joke                   # 讲个程序员笑话
 ```
 
 ## 插件列表
 
 | 插件 | 说明 | 版本 |
 |------|------|------|
-| [myy-demo-a](./plugins/myy-demo-a) | 示例插件 A - 问候、时间、笑话 | 1.0.0 |
-| [myy-demo-b](./plugins/myy-demo-b) | 示例插件 B - 文本总结、翻译 | 1.0.0 |
+| [myy-demo](./plugins/myy-demo) | 示例插件 - 问候、时间、笑话 | 1.0.0 |
 | [myyclaw-dev](./plugins/myyclaw-dev) | 开发团队工具集 - 飞书文档管理 | 1.0.0 |
 
 ## 添加新插件

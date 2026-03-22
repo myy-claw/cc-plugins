@@ -10,18 +10,11 @@
   },
   "plugins": [
     {
-      "name": "myy-demo-a",
-      "source": "./plugins/myy-demo-a",
-      "description": "示例插件 A - 问候、时间、笑话",
+      "name": "myy-demo",
+      "source": "./plugins/myy-demo",
+      "description": "示例插件 - 问候、时间、笑话",
       "version": "1.0.0",
-      "keywords": ["example", "hello"]
-    },
-    {
-      "name": "myy-demo-b",
-      "source": "./plugins/myy-demo-b",
-      "description": "示例插件 B - 文本总结、翻译",
-      "version": "1.0.0",
-      "keywords": ["tools", "summarize", "translate"]
+      "keywords": ["example", "hello", "demo"]
     },
     {
       "name": "myyclaw-dev",
