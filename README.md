@@ -5,7 +5,7 @@ myy-claw 的 Claude Code 插件市场。
 ## 安装
 
 ```
-/plugin marketplace add myy-claw/plugin-myy-dev
+/plugin marketplace add myy-claw/cc-plugins
 ```
 
 ## 插件列表

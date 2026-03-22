@@ -2,10 +2,10 @@
 
 ## 项目概览
 
-本仓库是 **myy-claw** 的 Claude Code 插件市场（Marketplace），托管于 `https://github.com/myy-claw/plugin-myy-dev`。用户通过以下命令安装：
+本仓库是 **myy-claw** 的 Claude Code 插件市场（Marketplace），托管于 `https://github.com/myy-claw/cc-plugins`。用户通过以下命令安装：
 
 ```
-/plugin marketplace add myy-claw/plugin-myy-dev
+/plugin marketplace add myy-claw/cc-plugins
 ```
 
 ## 仓库结构

@@ -14,7 +14,7 @@
 此插件作为 `myy-cc-plugins` 市场的一部分发布：
 
 ```
-/plugin marketplace add myy-claw/plugin-myy-dev
+/plugin marketplace add myy-claw/cc-plugins
 ```
 
 也可单独加载进行本地测试：
