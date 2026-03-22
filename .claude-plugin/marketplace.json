@@ -22,6 +22,13 @@
       "description": "示例插件 B - 文本总结、翻译",
       "version": "1.0.0",
       "keywords": ["tools", "summarize", "translate"]
+    },
+    {
+      "name": "myyclaw-dev",
+      "source": "./plugins/myyclaw-dev",
+      "description": "myyclaw 开发团队工具集 - 飞书文档管理、开发规范等",
+      "version": "1.0.0",
+      "keywords": ["feishu", "docs", "bitable", "team"]
     }
   ]
 }

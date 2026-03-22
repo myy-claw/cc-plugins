@@ -2,3 +2,7 @@
 node_modules/
 *.log
 .env
+__pycache__/
+*.pyc
+.feishu_user_token.json
+test/

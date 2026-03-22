@@ -14,6 +14,7 @@ myy-claw 的 Claude Code 插件市场。
 |------|------|------|
 | [myy-demo-a](./plugins/myy-demo-a) | 示例插件 A - 问候、时间、笑话 | 1.0.0 |
 | [myy-demo-b](./plugins/myy-demo-b) | 示例插件 B - 文本总结、翻译 | 1.0.0 |
+| [myyclaw-dev](./plugins/myyclaw-dev) | 开发团队工具集 - 飞书文档管理 | 1.0.0 |
 
 ## 添加新插件
 
