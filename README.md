@@ -70,12 +70,42 @@ myy-claw 的 Claude Code 插件市场。
 > /myy-demo:joke                   # 讲个程序员笑话
 ```
 
+### Step 5: 更新插件
+
+插件发布新版本后，执行 `/plugin` 切换到 **Installed** 标签页，可以看到有更新的插件：
+
+```
++--------------------------------------------------------------------------+
+| Plugins  Installed  [Installed]   Marketplaces   Errors                  |
+|--------------------------------------------------------------------------|
+| Installed plugins                                                        |
+|                                                                          |
+|   myyclaw-dev  · myy-cc-plugins                                         |
+|   Installed: 1.0.0  →  Available: 1.1.0  (update available)             |
+|                                                                          |
+|   myy-demo     · myy-cc-plugins                                         |
+|   Installed: 1.0.0  (up to date)                                        |
+|                                                                          |
+| u to update · U to update all · Enter to details · d to uninstall       |
++--------------------------------------------------------------------------+
+```
+
+选中需要更新的插件，按 **u** 更新单个插件，或按 **U** 一键更新全部：
+
+```
++--------------------------------------------------------------------------+
+|   ✓ myyclaw-dev updated: 1.0.0 → 1.1.0                                  |
++--------------------------------------------------------------------------+
+```
+
+> **提示**：也可以直接在对话中输入 `/plugin` 后选择更新，无需退出当前会话。更新后新的 Skill 内容会在下次调用时生效。
+
 ## 插件列表
 
 | 插件 | 说明 | 版本 |
 |------|------|------|
-| [myy-demo](./plugins/myy-demo) | 示例插件 - 问候、时间、笑话 | 1.0.0 |
-| [myyclaw-dev](./plugins/myyclaw-dev) | 开发团队工具集 - 飞书文档管理 | 1.0.0 |
+| [myy-demo](./plugins/myy-demo) | 示例插件 - 问候、时间、笑话、视频处理 | 1.0.0 |
+| [myyclaw-dev](./plugins/myyclaw-dev) | 开发团队工具集 - 飞书文档管理 | 1.1.0 |
 
 ## 添加新插件
 
