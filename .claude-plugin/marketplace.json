@@ -15,6 +15,13 @@
       "description": "示例插件 - Hello World skill",
       "version": "1.0.0",
       "keywords": ["example", "hello"]
+    },
+    {
+      "name": "myy-tools",
+      "source": "./plugins/myy-tools",
+      "description": "实用工具集插件 - 文本处理与辅助工具",
+      "version": "1.0.0",
+      "keywords": ["tools", "summarize", "translate"]
     }
   ]
 }

@@ -1,12 +1,14 @@
 # myy-hello
 
-示例插件 - Hello World skill。
+示例插件 - 包含问候、时间和笑话等趣味 skills。
 
 ## 包含的 Skills
 
 | Skill | 调用方式 | 说明 |
 |-------|---------|------|
 | hello | `/myy-hello:hello` | 简单的 Hello World 问候 |
+| time | `/myy-hello:time` | 报告当前日期和时间 |
+| joke | `/myy-hello:joke` | 讲一个程序员笑话 |
 
 ## 安装
 

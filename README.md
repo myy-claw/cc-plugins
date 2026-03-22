@@ -12,7 +12,8 @@ myy-claw 的 Claude Code 插件市场。
 
 | 插件 | 说明 | 版本 |
 |------|------|------|
-| [myy-hello](./plugins/myy-hello) | 示例插件 - Hello World skill | 1.0.0 |
+| [myy-hello](./plugins/myy-hello) | 示例插件 - 问候、时间、笑话 | 1.0.0 |
+| [myy-tools](./plugins/myy-tools) | 实用工具集 - 文本总结、翻译 | 1.0.0 |
 
 ## 添加新插件
 
