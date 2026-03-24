@@ -121,6 +121,7 @@ myy-claw 的 Claude Code 插件市场。
 |------|------|------|
 | [myy-demo](./plugins/myy-demo) | 示例插件 - 问候、时间、笑话、视频处理 | 1.0.0 |
 | [myyclaw-dev](./plugins/myyclaw-dev) | 开发团队工具集 - 飞书文档管理 | 1.1.0 |
+| [myy-skill-hub](./plugins/myy-skill-hub) | 技能市场维护 - skills-map 门户案例制作 | 1.0.0 |
 
 ## 添加新插件
 

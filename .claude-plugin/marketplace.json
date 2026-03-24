@@ -22,6 +22,13 @@
       "description": "myyclaw 开发团队工具集 - 飞书文档管理、开发规范等",
       "version": "1.1.0",
       "keywords": ["feishu", "docs", "bitable", "team"]
+    },
+    {
+      "name": "myy-skill-hub",
+      "source": "./plugins/myy-skill-hub",
+      "description": "技能市场维护工具集 - skills-map 门户案例制作与管理",
+      "version": "1.0.0",
+      "keywords": ["skills-map", "portal", "examples", "skill-builder"]
     }
   ]
 }
